@@ -38,3 +38,9 @@
 - name: Install Docker module for Python
   pip:
     name: docker
+
+- name: Add docker user to the docker group
+  user:
+    name: "{{ docker_user }}"
+    groups: docker
+    append: yes
