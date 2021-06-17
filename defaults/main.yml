@@ -1,2 +1,13 @@
 ---
-docker_user: wozorio
+docker_edition: docker-ce
+docker_apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
+docker_deb_repository: "deb https://download.docker.com/linux/ubuntu bionic stable"
+docker_system_packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - software-properties-common
+  - python-pip
+  - python3-pip
+  - virtualenv
+  - python3-setuptools

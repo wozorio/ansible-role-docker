@@ -3,29 +3,21 @@
   apt:
     name: "{{ item }}"
     state: latest
-  loop:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - software-properties-common
-    - python-pip
-    - python3-pip
-    - virtualenv
-    - python3-setuptools
+  loop: "{{ docker_system_packages }}"
 
 - name: Add Docker GPG key to apt
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+    url: "{{ docker_apt_gpg_key }}"
     state: present
 
 - name: Add Docker repository
   apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    repo: "{{ docker_deb_repository }}"
     state: present
 
 - name: Install Docker
   apt:
-    name: docker-ce
+    name: "{{ docker_edition }}"
     state: latest
     update_cache: yes
   notify:
