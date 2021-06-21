@@ -1,5 +1,5 @@
 ---
-- name: Install dependencies for Docker
+- name: Install dependencies
   apt:
     name: "{{ item }}"
     state: latest
@@ -27,7 +27,7 @@
 - name: Ensure handlers are notified now for the Docker service changes to take effect
   meta: flush_handlers
 
-- name: Add docker user to the docker group
+- name: Add user to the docker group
   user:
     name: "{{ docker_user }}"
     groups: docker
