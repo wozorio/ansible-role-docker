@@ -1,9 +1,9 @@
 ---
-- name: Install required system packages
+- name: Install dependencies for Docker
   apt:
     name: "{{ item }}"
     state: latest
-  loop: "{{ docker_system_packages }}"
+  loop: "{{ docker_dependencies }}"
 
 - name: Add Docker GPG key to apt
   apt_key:
@@ -27,13 +27,21 @@
 - name: Ensure handlers are notified now for the Docker service changes to take effect
   meta: flush_handlers
 
-- name: Install Docker module for Python
-  pip:
-    name: docker
-
 - name: Add docker user to the docker group
   user:
     name: "{{ docker_user }}"
     groups: docker
     append: yes
   when: docker_user is defined
+
+- name: Install dependencies for Docker SDK for Python
+  apt:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ docker_sdk_for_python_dependencies }}"
+  when: docker_install_sdk_for_python | bool
+
+- name: Install Docker SDK for Python
+  pip:
+    name: docker
+  when: docker_install_sdk_for_python | bool
