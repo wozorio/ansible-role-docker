@@ -1,10 +1,14 @@
 ---
-docker_edition: docker-ce
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
 docker_apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
-docker_deb_repository: "deb https://download.docker.com/linux/ubuntu bionic stable"
+docker_deb_repository: "deb https://download.docker.com/linux/ubuntu focal stable"
 docker_dependencies:
   - apt-transport-https
   - ca-certificates
+  - gnupg
 docker_install_sdk_for_python: true
 docker_sdk_for_python_dependencies:
   - python-pip
