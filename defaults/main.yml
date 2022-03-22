@@ -11,7 +11,7 @@ docker_dependencies:
   - gnupg
 docker_install_sdk_for_python: true
 docker_sdk_for_python_dependencies:
-  - python-pip
+  # - python-pip
   - python3-pip
   - virtualenv
   - python3-setuptools
