@@ -27,7 +27,7 @@
     name: "{{ item }}"
     state: latest
     update_cache: yes
-  loop: "{{ docker_edition }}"
+  loop: "{{ docker_packages }}"
   notify:
     - enable docker
     - restart docker
